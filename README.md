@@ -5,6 +5,7 @@ Remote connector is a project that aims delivering gaze data from Inseye eye tra
 # Project structure
 
 Project is made of multiple parts:
+- [Remote-Connector-Documentation](https://github.com/Inseye/Remote-Connector-Documentation) this repository, 
 - [Remote-Connector-Android](https://github.com/Inseye/Remote-Connector-Android) an Android library intended to be part of [Inseye-Android-Service](https://github.com/Inseye/Inseye-Android-Service) that exposes API ways to discover the API for clients in local network
 - [Remote-Connector-API](https://github.com/Inseye/Remote-Connector-API) a repository with network public API definitions
 - [Remote-Connector-Desktop](https://github.com/Inseye/Remote-Connector-Desktop) an desktop (Windows for now) application that connects to [Inseye-Android-Service](https://github.com/Inseye/Inseye-Android-Service) using [Remote-Connector-API](https://github.com/Inseye/Remote-Connector-API) and exposes gaze data to other desktop application through IPC communication
@@ -27,6 +28,10 @@ end
 
 subgraph desktop_device ["Desktop"]
 desktop_service["Desktop Service<br>(Remote-Connector-Service)"]
+subgraph "SCCP"
+shared_memory(["Shared memory"])
+named_pipes(["Named pipes"])
+end
 subgraph "Client Application"
 client_application["Library<br>(Remote-Connector-Lib)"]
 end
@@ -37,7 +42,10 @@ sd --> desktop_service
 grpc --> android_plugin
 android_plugin --- sd
 grpc --> desktop_service
-desktop_service --"Shared memory"--> client_application
+desktop_service --- shared_memory --> client_application
+named_pipes --> desktop_service
+named_pipes --> client_application
+
 
 classDef red fill:#fdc
 class android_device red
