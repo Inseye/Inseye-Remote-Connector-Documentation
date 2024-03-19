@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - SCCP ver 0.1.0 specification
+- SystemStateDiagram.md, describes how application behaves when used by user
 
 ## [0.1.0] - 14.02.2024
 
