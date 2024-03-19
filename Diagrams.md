@@ -16,8 +16,8 @@ autonumber
 actor User
 participant Android Service
 box Green Android Views
-participant Android Service Initial View
-participant Looking For Desktop View
+participant Initial View
+participant Accept Incoming Connection View
 end
 participant Local Area Network
 participant Desktop Service
@@ -26,35 +26,48 @@ participant Looking For Remote View
 end
 
 par Initialize desktop service
-    User ->> Desktop Service: Turns on
+    User ->> Desktop Service: Starts application
+    activate Looking For Remote View
     Looking For Remote View ->> User: Informs that desktop service is waiting for remote eye tracker connection
     activate Looking For Remote View
-    Desktop Service ->> Local Area Network: Publishes information about<br/>service waiting for eye tracker
-and Initialize android service 
-    User ->> Android Service: Turns on
-    activate Android Service Initial View
-    User ->> Android Service Initial View: Wants to connect with desktop service
-    deactivate Android Service Initial View
-    activate Looking For Desktop View
     loop Until user decides to connect
-        Android Service --) Local Area Network: Queries for listening<br/> desktop services
-        Looking For Desktop View ->> User: Shows desktop services<br/>waiting for eye tracker
+        Desktop Service --) Local Area Network: Queries for publishing<br/> android services
+        Looking For Remote View ->> User: Shows android services<br/>ready to serve eye tracker
+    end
+and Initialize android service 
+    User ->> Android Service: starts application
+    activate Initial View
+    User ->> Initial View: Wants to connect with desktop service
+    Android Service --) Local Area Network: Publishes information about<br/>service offering eye tracker
+end
+
+User ->> Looking For Remote View: Decides which remote<br/>service to connect to
+Desktop Service --) Android Service: Sends credentials for connection
+deactivate Initial View
+activate Accept Incoming Connection View
+Accept Incoming Connection View ->> User: Show information about desktop service attempting to connect
+alt user accepts
+    User ->> Accept Incoming Connection View: Accepts desktop service offer
+else user declines
+    break
+        User ->> Accept Incoming Connection View: Declines desktop service offer
+        Looking For Remote View ->> User: Inform that connection was refused from Android device
+    end 
+else operation timeout 
+    break
+        Looking For Remote View ->> User: Inform that connection failed due to timeout
     end
 end
 
-User ->> Looking For Desktop View: Decides which desktop<br/>service to connect to
-
-Android Service --) Desktop Service: Sends credentials for connection
+deactivate Accept Incoming Connection View
+activate Initial View
+Android Service --) Desktop Service: Sends authorization token
 Desktop Service --) Android Service: Establishes secure<br/>connection with credentials
-break When failed to establish connection
-Looking For Desktop View ->> User: Inform user that services<br/>failed to connect [restart sequence from step 6]
+break Failed to establish connection
+Looking For Remote View ->> User: Inform user that services<br/>failed to connect
 end
-Looking For Desktop View ->> User: Informs user that<br/>connection was established
-
-deactivate Looking For Desktop View
-activate Android Service Initial View
 Looking For Remote View ->> User: Informs user that<br/>connection was established
-deactivate Android Service Initial View
+deactivate Initial View
 deactivate Looking For Remote View
 ```
 
@@ -67,6 +80,7 @@ deactivate Looking For Remote View
 sequenceDiagram
 autonumber
 actor User
+
 participant Desktop Service
 participant Android Service
 par Show Eye Tracking State
