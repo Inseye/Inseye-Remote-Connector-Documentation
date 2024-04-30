@@ -5,11 +5,11 @@ Remote connector is a project that aims delivering gaze data from Inseye eye tra
 # Project structure
 
 Project is made of multiple parts:
-- [Remote-Connector-Documentation](https://github.com/Inseye/Remote-Connector-Documentation) this repository, 
-- [Remote-Connector-Android](https://github.com/Inseye/Remote-Connector-Android) an Android library intended to be part of [Inseye-Android-Service](https://github.com/Inseye/Inseye-Android-Service) that exposes API ways to discover the API for clients in local network
-- [Remote-Connector-API](https://github.com/Inseye/Remote-Connector-API) a repository with network public API definitions
-- [Remote-Connector-Desktop](https://github.com/Inseye/Remote-Connector-Desktop) an desktop (Windows for now) application that connects to [Inseye-Android-Service](https://github.com/Inseye/Inseye-Android-Service) using [Remote-Connector-API](https://github.com/Inseye/Remote-Connector-API) and exposes gaze data to other desktop application through IPC communication
-- [Remote-Connector-Lib](https://github.com/Inseye/Remote-Connector-Lib) a native library with C and C++ headers used to communicate with [Remote-Connector-Desktop](https://github.com/Inseye/Remote-Connector-Desktop) within the same system
+- [Remote-Connector-Documentation](https://github.com/Inseye/Inseye-Remote-Connector-Documentation) this repository, 
+- [Remote-Connector-Android (private)](https://github.com/Inseye/Remote-Connector-Android) an Android library intended to be part of [Inseye-Android-Service (private)](https://github.com/Inseye/Inseye-Android-Service) that exposes API ways to discover the API for clients in local network
+- [Remote-Connector-API](https://github.com/Inseye/Inseye-Remote-Connector-API) a repository with network public API definitions
+- [Remote-Connector-Desktop](https://github.com/Inseye/Inseye-Remote-Connector-Desktop) an desktop (Windows for now) application that connects to [Inseye-Android-Service (private)](https://github.com/Inseye/Inseye-Android-Service) using [Remote-Connector-API](https://github.com/Inseye/Inseye-Remote-Connector-API) and exposes gaze data to other desktop application through IPC communication
+- [Remote-Connector-Lib](https://github.com/Inseye/Inseye-Remote-Connector-Lib) a native library with C and C++ headers used to communicate with [Remote-Connector-Desktop](https://github.com/Inseye/Inseye-Remote-Connector-Desktop) within the same system
 
 # Architecture Overview
 
@@ -47,7 +47,7 @@ named_pipes --> desktop_service
 named_pipes --> client_application
 
 
-classDef red fill:#fdc
+classDef red fill:#fc2c03
 class android_device red
 class desktop_device red
 :::
