@@ -13,7 +13,7 @@ Project is made of multiple parts:
 
 # Architecture Overview
 
-::: mermaid 
+```mermaid 
 flowchart TD
 subgraph android_device ["Android Device"]
 subgraph "Android Service"
@@ -47,10 +47,10 @@ named_pipes --> desktop_service
 named_pipes --> client_application
 
 
-classDef red fill:#fc2c03
+classDef red fill: #fc2c03
 class android_device red
 class desktop_device red
-:::
+```
 
 ## Articles
 - [SCCP](./SCCP.md) describes communication protocol between desktop service and desktop client application
