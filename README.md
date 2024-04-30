@@ -51,3 +51,7 @@ classDef red fill:#fc2c03
 class android_device red
 class desktop_device red
 :::
+
+## Articles
+- [SCCP](./SCCP.md) describes communication protocol between desktop service and desktop client application
+- [System State Diagram](./SystemStateDiagram.md) provides board overview of states and flow of application and user
