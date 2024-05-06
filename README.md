@@ -53,5 +53,6 @@ class desktop_device red
 ```
 
 ## Articles
+- [Getting started](./GettingStarted.md) describes how to setup the system and consume data in C/C++ application
 - [SCCP](./SCCP.md) describes communication protocol between desktop service and desktop client application
 - [System State Diagram](./SystemStateDiagram.md) provides board overview of states and flow of application and user

@@ -1,4 +1,6 @@
-# About
+# System state diagram
+
+*created by [Mateusz Chojnowski](mailto:mateusz.chojnowski@inseye.com)*
 
 This document describes user and system sequence diagram.
 Diagrams include behavior of the user and both presentation layer and simplified business layer of all the systems taking part in communication.

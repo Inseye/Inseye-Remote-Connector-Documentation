@@ -1,4 +1,6 @@
-# About
+# Service-Client communication protocol
+
+*created by [Mateusz Chojnowski](mailto:mateusz.chojnowski@inseye.com)*
 
 This document describes how client applications communicate with Windows service. Communication protocol specification is named as **Service-Client communication protocol** or **SCCP**.
 
